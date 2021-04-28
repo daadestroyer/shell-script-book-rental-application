@@ -4,13 +4,13 @@ echo "Welcome to RVCE BOOK RENTAL APPLICATION"
 echo "#######################################"
 
 COST_PER_DAY=30
-read -p "Was book returned before 9:00PM [yes/no] : " ON_TIME
 read -p "How many days was book rented : " DAYS_RENTED
 read -p "What day book rented : " DAY_RENTED
 
-if [ $ON_TIME = "NO" ]; then
+H=$(date +%H)
+if [ $H -ge 21 ]; then
    # charge extra money 
-   let DAY_RETURNED++
+   let DAYS_RENTED++
 fi
 if [ $DAY_RENTED = "sunday" ]; then
     COST=$(echo "$DAYS_RENTED * $COST_PER_DAY * 0.5" | bc)
